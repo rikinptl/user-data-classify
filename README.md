@@ -50,6 +50,18 @@ This Python script 🐍 is designed to fetch data from a specified URL 🌐 in v
 
 ## Schedule Configuration 🕒
 
+The script is configured to run periodically using the `schedule` module, ensuring automated and consistent data retrieval and storage.
+
+### How It Works:
+
+1. The `job` function is scheduled to run every 3 seconds (adjustable) using the `schedule.every(3).seconds` syntax.
+
+2. The script continuously checks for pending scheduled jobs with `schedule.run_pending()`.
+
+3. The script remains active, allowing scheduled jobs to execute at their designated intervals.
+
+Feel free to modify the schedule parameters based on your specific requirements. If you have any further questions or adjustments, please let me know!
+
 # Code Review and Learnings 📚
 
 ## Learnings:
