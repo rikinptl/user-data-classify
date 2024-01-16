@@ -9,11 +9,11 @@ from xml.etree import ElementTree as ET
 from datetime import datetime
 
 class classifier:
-    def __init__(self, url, file_type):
+    def __init__(self, url: str, file_type: str)-> None :
         self.file_type = str(file_type)
         self.url = url
 
-    def pathmaker(self):
+    def pathmaker(self)-> str:
         timestamp = datetime.now()
         directory = os.path.join('Data',self.file_type,str(timestamp.year), str(timestamp.month), str(timestamp.day), str(timestamp.hour), str(timestamp.minute))
         
@@ -26,25 +26,25 @@ class classifier:
         file_path = os.path.join(directory,file_name)
         return file_path
 
-    def fetchdata(self):
+    def fetchdata(self)-> requests.Response:
         data = requests.get(f'{self.url}?/format={self.file_type}')
         return data
 
-    def storedata(self, data, file_path):
-        def store_json():
+    def storedata(self, data: requests.Response, file_path: str)-> None:
+        def store_json()-> None:
             with open(file_path, 'w') as jsonfile:
                 json.dump(data.json(), jsonfile)
 
-        def store_csv():
+        def store_csv()-> None:
             with open(file_path, 'w', newline='') as csvfile:
                 csvfile.write(data.text)
 
-        def store_yaml():
+        def store_yaml()-> None:
             yaml_data = yaml.dump(data.json(), default_flow_style=False)
             with open(file_path, 'w') as yamlfile:
                 yamlfile.write(yaml_data)
 
-        def store_xml():
+        def store_xml()-> None:
             with open(file_path, 'w') as xmlfile:
                 xmlfile.write(data.text)
 
@@ -63,15 +63,15 @@ class classifier:
         selected_function()
 
 
-def job():
-    fileformat = input('Enter the file format that you want to fetch: \ncsv \njson \n yaml \n xml')
-    obj = classifier('https://randomuser.me/api/', 'json')
+def job()-> None:
+    fileformat = input('Enter the file format that you want to fetch: \ncsv \njson \n yaml \n xml\n')
+    obj = classifier('https://randomuser.me/api/', fileformat.lower())
     filepath = obj.pathmaker()
     data = obj.fetchdata()
     obj.storedata(data, filepath)
     
 # Schedule the job to run every night at a specific time (e.g., 2:00 AM)
-schedule.every(3).seconds.do(job)
+schedule.every(3).hour.do(job)
 
 # Keep the script running to allow scheduled jobs to execute
 while True:
