@@ -36,6 +36,20 @@ This Python script 🐍 is designed to fetch data from a specified URL 🌐 in v
 
 ## Code Structure 🏗️
 
+### classifier Class
+
+- **`__init__(self, url: str, file_type: str)`**: Initializes the classifier with a URL and file type.
+  
+- **`pathmaker(self) -> str`**: Generates a structured directory and file name based on timestamp.
+
+- **`fetchdata(self) -> requests.Response`**: Fetches data from the specified URL in the chosen format.
+
+- **`storedata(self, data: requests.Response, file_path: str) -> None`**: Stores the fetched data in the specified file format (JSON, CSV, YAML, XML).
+
+- **`job(fileformat) -> None` (Static Method)**: Allows the user to input the desired file format, creates a classifier object, fetches and stores data.
+
+## Schedule Configuration 🕒
+
 # Code Review and Learnings 📚
 
 ## Learnings:
