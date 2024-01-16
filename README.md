@@ -14,8 +14,8 @@ This Python script is designed to fetch data from a specified URL in various for
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/your-repo.git
-    cd your-repo
+    git clone https://github.com/rikinptl/user-data-classify.git
+    cd user-data-classify
     ```
 
 2. Run the script:
@@ -32,7 +32,7 @@ This Python script is designed to fetch data from a specified URL in various for
 
 3. The data is stored in a structured directory based on timestamp.
 
-4. The script is scheduled to run every 3 seconds, allowing for periodic data retrieval and storage.
+4. The script is scheduled to run every 3 hours, allowing for periodic data retrieval and storage.
 
 ## Code Structure
 
